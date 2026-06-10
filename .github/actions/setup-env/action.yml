@@ -149,7 +149,7 @@ runs:
     # Build optimizations (caching)
     - name: Setup sccache
       if: inputs.mode == 'build'
-      uses: mozilla-actions/sccache-action@v0.0.9
+      uses: mozilla-actions/sccache-action@v0.0.10
 
     - name: Enable sccache
       if: inputs.mode == 'build'
