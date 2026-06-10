@@ -1,7 +1,7 @@
 name: Build App With Pake CLI
 
 env:
-  NODE_VERSION: "24"
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   PNPM_VERSION: "10.26.2"
 
 on:
