@@ -1,21 +1,24 @@
-// 翻訳先の言語（日本語）をCookieで事前指定
-document.cookie = "googtrans=/auto/ja; path=/";
+(function () {
+  try { document.cookie = 'googtrans=/auto/ja; path=/'; } catch (e) {}
 
-window.addEventListener("DOMContentLoaded", () => {
-  const box = document.createElement("div");
-  box.id = "google_translate_element";
-  box.style.cssText = "position:fixed;bottom:8px;right:8px;z-index:2147483647";
-  document.body.appendChild(box);
+  function start() {
+    if (document.getElementById('google_translate_element')) return;
+    var box = document.createElement('div');
+    box.id = 'google_translate_element';
+    box.style.cssText = 'position:fixed;bottom:8px;right:8px;z-index:2147483647;background:#fff;padding:2px';
+    document.body.appendChild(box);
 
-  window.googleTranslateElementInit = () => {
-    new google.translate.TranslateElement(
-      { pageLanguage: "auto", includedLanguages: "ja", autoDisplay: false },
-      "google_translate_element",
-    );
-  };
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'auto', includedLanguages: 'ja', autoDisplay: false },
+        'google_translate_element'
+      );
+    };
+    var s = document.createElement('script');
+    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.head.appendChild(s);
+  }
 
-  const s = document.createElement("script");
-  s.src =
-    "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-  document.body.appendChild(s);
-});
+  if (document.body) start();
+  else window.addEventListener('DOMContentLoaded', start);
+})();
